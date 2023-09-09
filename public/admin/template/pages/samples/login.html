@@ -31,7 +31,7 @@
               </div>
               <h4>Hello! let's get started</h4>
               <h6 class="font-weight-light">Sign in to continue.</h6>
-              <form class="pt-3">
+              <form onsubmit="return false " class="pt-3">
                 <div class="form-group">
                   <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
                 </div>
@@ -51,12 +51,12 @@
                   <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
                 <div class="mb-2">
-                  <button type="button" class="btn btn-block btn-facebook auth-form-btn">
+                  <button type="button" class="btn btn-block btn-facebook auth-form-btn" onclick="login()">
                     <i class="ti-facebook mr-2"></i>Connect using facebook
                   </button>
                 </div>
-                <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="register.html" class="text-primary">Create</a>
+                <!-- <div class="text-center mt-4 font-weight-light">
+                  Don't have an account? <a href="register.html" class="text-primary">Create</a> -->
                 </div>
               </form>
             </div>
@@ -80,6 +80,42 @@
   <script src="../../js/settings.js"></script>
   <script src="../../js/todolist.js"></script>
   <!-- endinject -->
+  <script>
+    function login(){
+    email = document.getElementById('email').value ; 
+    password = document.getElementById('password').value ; 
+    // Définir une requête de connection standard JS
+var request = new XMLHttpRequest();
+// Choisir la méthode GET comme une méthode d'accès au serveur et récupérer les données .
+request.open("GET", "http://127.0.0.1:3000/admins", true);
+// Load les données à partir de la serveur -> Début connection
+request.onload = function () {
+  // Begin accessing JSON data here
+  var data = JSON.parse(this.response);
+  console.log(data);
+  access = false;
+  for(i=0 ; i < data.length ; i++){
+        if(data[i].email == email && data[i].password == password){
+          access = true ; 
+          localStorage.setItem("idA" , data[i]._id)
+          localStorage.setItem("usernameA" , data[i].username)
+        }
+      }
+
+
+      if(access){
+        sessionStorage.setItem("loggedIn", "true");
+        alert("welcome user"); 
+        location.replace('../../index.html')
+
+      }
+      else{
+        alert("Invalid Login or password") ; 
+      }
+};
+// Send request
+request.send();}
+</script>
 </body>
 
 </html>
