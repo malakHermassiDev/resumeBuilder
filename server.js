@@ -69,14 +69,14 @@ const questionRouter = require('./router/question.routes.js')(app)
 const skillRouter = require('./router/skills.routes.js')(app)
 // Redirect to login page
 
-  
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'client', 'index.html'));
+  });
   // Remove the existing route that redirects to the dashboard
   app.get('/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'public' , 'admin' , 'template', 'index.html'));
   });
-  app.get('/client', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'client', 'index.html'));
-  });
+ 
 app.listen( port , ()=>{
     console.log(`Server listen on port ${port}`)
 })

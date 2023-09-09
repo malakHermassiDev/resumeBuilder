@@ -12,7 +12,7 @@
             var url_href = window.location.href ; 
             var url = new URL(url_href)
             var ID = url.searchParams.get("id")
-            newUrl = "http://127.0.0.1:3000/educations/" +ID
+            newUrl = "https://olfaresumebuilding.onrender.com/educations/" +ID
             request = new XMLHttpRequest()
             request.open("DELETE" , newUrl , true )
             request.onload = function(){

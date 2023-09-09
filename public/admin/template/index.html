@@ -52,6 +52,12 @@
 </head>
 <body>
   <div class="container-scroller">
+    <script>
+      // Check if user is logged in
+      if (!sessionStorage.getItem("loggedIn")) {
+        window.location.href = "pages/samples/login.html"; // Redirect to the login page
+      }
+    </script>
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -314,37 +320,29 @@
   <script src="js/hoverable-collapse.js"></script>
   <script src="js/template.js"></script>
   <script src="js/settings.js"></script>
-  <!-- <script src="js/todolist.js"></script> -->
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <!-- <script src="js/dashboard.js"></script> -->
-  <!-- <script src="js/Chart.roundedBarCharts.js"></script> -->
-  <!-- End custom js for this page-->
+  <script>
+    // Logout function
+function logout() {
+  fetch("/logout", {
+    method: "POST",
+    credentials: "same-origin" // Include cookies in the request
+  })
+    .then(response => {
+      if (response.ok) {
+        // Redirect to the home page or perform any other desired action
+        // Inside the logout function
+        sessionStorage.removeItem("loggedIn");
+
+        window.location.href = "pages/samples/login.html";
+      } else {
+        console.error("Logout failed");
+      }
+    })
+    .catch(error => {
+      console.error("Logout failed:", error);
+    });
+}
+  </script>
 </body>
 
 </html>
-
-<!-- <script>
-const names = [
-  { id: 1, name: "Alice" },
-  { id: 2, name: "Bob" },
-  { id: 3, name: "Charlie" }
-];
-
-const nameList = names.map(({ id, name }) => <li key={id}>{name}</li>);
-
-return (
-  <ul>
-    {nameList}
-  </ul>
-);
-</script> -->
-
-
-
-<!-- component (function) 20 line  -> image()
-40 image -->
-<!-- npm : node package manager 
-install tool
-delete tool
-update tool-->
