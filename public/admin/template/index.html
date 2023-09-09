@@ -1,0 +1,350 @@
+<!-- <script src="https://kit.fontawesome.com/b99e675b6e.js"></script> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ 
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Skydash Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="vendors/feather/feather.css">
+  <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="images/favicon.png" />
+  <!-- import icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48
+    }
+    .navbar .navbar-brand-wrapper .navbar-brand img {
+    max-width: 100%;
+    max-height: 150px;
+    height: 150px;
+    min-height: 90px;
+    margin: auto;
+    vertical-align: middle;
+}
+    </style>
+    <!-- shadow style -->
+  <style>
+    .shadoww{
+      box-shadow: 11px -3px 10px -2px rgba(171,171,171,0.65);
+      
+    }
+  </style>
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="images/logo.png" width="300px" height="100px !important" class="mr-2" alt="logo"/></a>
+        <!-- <a class="navbar-brand brand-logo-mini" width="300px" href="index.html"><img src="images/logo.png" alt="logo"/></a> -->
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        
+      
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      <div class="theme-setting-wrapper">
+        <div id="settings-trigger"><i class="ti-settings"></i></div>
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close ti-close"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles default"></div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav  class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+     
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#job-iterview" aria-expanded="false" aria-controls="job-iterview">
+              <span class="material-symbols-outlined">
+                person
+                </span>
+              <span class="menu-title pl-2"> Users</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="job-iterview">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/forms/UsersList.html">users list</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/forms/addUser.html">Add user</a></li>
+              </ul>
+            </div>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">  Feedbacks</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/forms/feedbacksList.html">feedbacks list</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/forms/addfeedback.html">Add feedback</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+              <span class="material-symbols-outlined">
+                question_mark
+                </span>
+              <span class="menu-title pl-2">Questions</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="tables">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/forms/questionsList.html">Questions list</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/forms/addQuestion.html">Add Question</a></li>
+              </ul>
+            </div>
+          </li>
+   
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#Skills" aria-expanded="false" aria-controls="Skills">
+              <span class="material-symbols-outlined">
+                psychology
+                </span>
+              <span class="menu-title pl-2">Skills</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="Skills">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/forms/skillsList.html">skills list</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/forms/addSkill.html">Add skills</a></li>
+
+              </ul>
+            </div>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#Experience" aria-expanded="false" aria-controls="Experience">
+              <span class="material-symbols-outlined">
+                business_center
+                </span>
+              <span class="menu-title pl-2">Experience</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="Experience">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/forms/experiencesList.html">experience list</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/forms/addExperience.html">Add experience</a></li>
+
+              </ul>
+            </div>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#policie" aria-expanded="false" aria-controls="policie">
+              <span class="material-symbols-outlined">
+                menu_book
+                </span>
+              <span class="menu-title pl-2"> Education</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="policie">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/forms/educationList.html">Education list</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/forms/addEducation.html">Add education</a></li>
+
+              </ul>
+            </div>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">authentication</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
+              </ul>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="pages/documentation/documentation.html">
+              <i class="fas fas-sign-out" style="width: 40px; height: 40px; color: black; "></i>
+              <span class="menu-title">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Welcome </h3>
+                  <h6 class="font-weight-normal mb-0">All systems are running smoothly! </h6>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-md-12 grid-margin transparent">
+              <div class="row">
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                  <div class="card card-tale shadoww">
+                    <div  class="card-body">
+                      <p class="mb-4">Manage Users</p>
+                      <p class="fs-30 mb-2">Users</p>
+                      <p>Latest 30 days</p>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                  <div class="card card-dark-blue shadoww">
+                    <div class="card-body">
+                      <p class="mb-4">Manage Feedbacks</p>
+                      <p class="fs-30 mb-2">Feedbacks</p>
+                      <p>Latest 30 days</p>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                  <div class="card card-light-blue shadoww">
+                    <div class="card-body ">
+                      <p class="mb-4">Manage Skills</p>
+                      <p class="fs-30 mb-2">Skills</p>
+                      <p>Latest 30 days</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 stretch-card transparent">
+                  <div class="card card-light-danger shadoww">
+                    <div class="card-body">
+                      <p class="mb-4">Manage Questions</p>
+                      <p class="fs-30 mb-2">Questions</p>
+                      <p>Latest 30 days</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+       
+        
+     
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+       <!-- < <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+          </div>
+        </footer>> -->
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <!-- <script src="vendors/chart.js/Chart.min.js"></script> -->
+  <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="js/dataTables.select.min.js"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="js/off-canvas.js"></script>
+  <script src="js/hoverable-collapse.js"></script>
+  <script src="js/template.js"></script>
+  <script src="js/settings.js"></script>
+  <!-- <script src="js/todolist.js"></script> -->
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <!-- <script src="js/dashboard.js"></script> -->
+  <!-- <script src="js/Chart.roundedBarCharts.js"></script> -->
+  <!-- End custom js for this page-->
+</body>
+
+</html>
+
+<!-- <script>
+const names = [
+  { id: 1, name: "Alice" },
+  { id: 2, name: "Bob" },
+  { id: 3, name: "Charlie" }
+];
+
+const nameList = names.map(({ id, name }) => <li key={id}>{name}</li>);
+
+return (
+  <ul>
+    {nameList}
+  </ul>
+);
+</script> -->
+
+
+
+<!-- component (function) 20 line  -> image()
+40 image -->
+<!-- npm : node package manager 
+install tool
+delete tool
+update tool-->

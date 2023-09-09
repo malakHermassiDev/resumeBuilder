@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View user </title>
+    
+</head>
+<body>
+    <b id="name"></b> <br>
+    <b id="email"></b>
+    <script>
+        // 
+        url_href = window.location.href
+        var url = new URL(url_href)
+        var ID = url.searchParams.get("id")
+        var newUrl = "http://127.0.0.1:3000/users/" +ID
+        request = new XMLHttpRequest()
+        request.open("Get" , newUrl , true)
+        request.onload = function (){
+            var users = JSON.parse(request.responseText)
+            if(request.readyState == 4 && request.status == "200"){
+                document.getElementById("name").innerHTML = "user Name : " + users.name
+                document.getElementById("email").innerHTML = "user email : " + users.email
+            }
+            else{
+                console.log('error')
+            }
+        }
+        request.send(null)
+    </script>
+</body>
+</html>
