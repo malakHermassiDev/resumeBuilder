@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Experience</title>
+  </head>
+  <body>
+    <form onsubmit="return false">
+      <div>
+        <label for="username">Username</label>
+        <input id="username" type="text" />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" type="email" />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input id="password" type="password" />
+      </div>
+      <div>
+        <button onclick="update();" type="submit">Add Experience</button>
+      </div>
+    </form>
+
+    <!--Update Experience-->
+    <script>
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+      var c = url.searchParams.get("id");
+
+      var url3 = "http://127.0.0.1:3000/experiences/" + c;
+      var xhr3 = new XMLHttpRequest();
+      xhr3.open("GET", url3, true);
+
+      xhr3.onload = function () {
+        var experiences = JSON.parse(xhr3.responseText);
+        if (xhr3.readyState == 4 && xhr3.status == "200") {
+          document.getElementById("username").value = experiences.username;
+          document.getElementById("email").value = experiences.email;
+          document.getElementById("password").value = experiences.password;
+        } else {
+          console.log("error");
+        }
+      };
+      xhr3.send(null);
+
+      function update() {
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var c = url.searchParams.get("id");
+
+        var url = "http://127.0.0.1:3000/experiences/" + c;
+
+        var data = {};
+        data.username = document.getElementById("username").value;
+        data.email = document.getElementById("email").value;
+        data.password = document.getElementById("password").value;
+
+        var json = JSON.stringify(data);
+        var xhr = new XMLHttpRequest();
+        xhr.open("PUT", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+        xhr.onload = function () {
+          var experiences = JSON.parse(xhr.responseText);
+          if (xhr.readyState == 4 && xhr.status == "200") {
+            alert("Experiences Updated!");
+            location.replace("listExperience.html");
+          } else {
+            console.error(experiences);
+            location.replace("listExperience.html");
+          }
+        };
+        xhr.send(json);
+      }
+    </script>
+  </body>
+</html>

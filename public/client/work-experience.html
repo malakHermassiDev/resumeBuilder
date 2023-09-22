@@ -56,7 +56,10 @@
           
           <label for="end-date">End Date:</label>
           <input type="date" id="end-date" name="end-date" required>
-          
+           <!-- Error message for date validation -->
+          <p id="date-error" class="error" style="color: red; display: none;" > the start date should be before the end date</p>
+          <!-- Success message when input is valid -->
+          <p id="date-success" class="success"></p>
           <label for="job-description">Job Description:</label>
           <textarea id="job-description" name="job-description" required></textarea>
           </div>
@@ -64,7 +67,7 @@
           <div id="work-experience-container"></div>
           <button type="button" id="addWorkBtn">Add Work Experience</button>
           <button type="submit">Next</button>
-    </form>
+        </form>
     <footer>
       <div class="container text-center text-md-start">
         <div class="footer-wrap">
@@ -82,14 +85,12 @@
           <div class="company">
             <h6 class="fw-bold">Company</h6>
             <p><a href="aboutus.html">About us</a></p>
-            <p><a href="offers.html">Cv Builder</a></p>
             <p><a href="contact.html">Contact</a></p>
   
           </div>
           
           <div class="useful-links">
             <h6 class="fw-bold">Useful links</h6>
-            <p><a href="blog.html">Blog</a></p>
             <p><a href="sign-in.html">Login</a></p>
 
           </div>
@@ -110,58 +111,87 @@
     
   </footer>
   <script>
-    const workExperience = [];
+    // dates validation
+document.getElementById('end-date').addEventListener('blur', validate);
 
-    document.querySelector('#addWorkBtn').onclick = function(e) {
-      e.preventDefault();
+function validate() {
+  const startDate = document.querySelector('#start-date').value;
+  const endDate = document.querySelector('#end-date').value;
+  const error = document.getElementById('date-error');
 
-      const position = document.querySelector('#position').value;
-      const company = document.querySelector('#company').value;
-      const startDate = document.querySelector('#start-date').value.split("-")[0];
-      const endDate = document.querySelector('#end-date').value.split("-")[0];
-      const jobDescription = document.querySelector('#job-description').value;
+  // Validate start date is before end date
+  if (new Date(startDate) > new Date(endDate)) {
+    error.style.display = "block";
+  } else {
+    error.style.display = "none"; // Hide the error message if dates are valid
+  }
+}
 
-      workExperience.push({ position, company, startDate, endDate, jobDescription });
-      document.querySelector('#work-experience-container').innerHTML += `
-        <div class="workContainer">
-          <label for="position">Position:</label>
-          <input type="text" name="position" value="${position}">
-          <label for="company">Company:</label>
-          <input type="text" name="company" value="${company}">
-          <label for="start-date">Start Date:</label>
-          <input type="date" name="start-date" value="${startDate}">
-          <label for="end-date">End Date:</label>
-          <input type="date" name="end-date" value="${endDate}">
-          <label for="job-description">Job Description:</label>
-          <textarea name="job-description">${jobDescription}</textarea>
-        </div>
-      `;
+   const workExperience = [];
 
-      document.querySelector('#position').value = '';
-      document.querySelector('#company').value = '';
-      document.querySelector('#start-date').value = '';
-      document.querySelector('#end-date').value = '';
-      document.querySelector('#job-description').value = '';
-    };
+document.querySelector('#addWorkBtn').onclick = function(e) {
+  e.preventDefault();
 
-    document.querySelector('form').onsubmit = function(e) {
-    e.preventDefault();
+  const position = document.querySelector('#position').value;
+  const company = document.querySelector('#company').value;
+  const startDate = document.querySelector('#start-date').value;
+  const endDate = document.querySelector('#end-date').value;
+  const jobDescription = document.querySelector('#job-description').value;
 
-    document.querySelectorAll('.workContainer').forEach(function(workContainer) {
-      const position = workContainer.querySelector('input[name="position"]').value;
-      const company = workContainer.querySelector('input[name="company"]').value;
-      const startDate = workContainer.querySelector('input[name="start-date"]').value.split("-")[0];
-      const endDate = workContainer.querySelector('input[name="end-date"]').value.split("-")[0];
-      const jobDescription = workContainer.querySelector('textarea[name="job-description"]').value;
+  // Validate start date is before end date
+  if (new Date(startDate) > new Date(endDate)) {
+    alert('Start date must be before end date.');
+      return false;
+  }
 
-      workExperience.push({ position, company, startDate, endDate, jobDescription });
-    });
+  workExperience.push({ position, company, startDate, endDate, jobDescription });
+  document.querySelector('#work-experience-container').innerHTML += `
+    <div class="workContainer">
+      <label for="position">Position:</label>
+      <input type="text" name="position" value="${position}">
+      <label for="company">Company:</label>
+      <input type="text" name="company" value="${company}">
+      <label for="start-date">Start Date:</label>
+      <input type="date" name="start-date" value="${startDate}">
+      <label for="end-date">End Date:</label>
+      <input type="date" name="end-date" value="${endDate}">
+      <label for="job-description">Job Description:</label>
+      <textarea name="job-description">${jobDescription}</textarea>
+    </div>
+  `;
 
-    const previousWorkExperience = JSON.parse(localStorage.getItem('workExperience')) || [];
-    const updatedWorkExperience = previousWorkExperience.concat(workExperience);
-    localStorage.setItem('workExperience', JSON.stringify(updatedWorkExperience));
-    window.location.href = 'languages.html';
-  };
+  document.querySelector('#position').value = '';
+  document.querySelector('#company').value = '';
+  document.querySelector('#start-date').value = '';
+  document.querySelector('#end-date').value = '';
+  document.querySelector('#job-description').value = '';
+};
+
+document.querySelector('form').onsubmit = function(e) {
+  e.preventDefault();
+
+  document.querySelectorAll('.workContainer').forEach(function(workContainer) {
+    const position = workContainer.querySelector('input[name="position"]').value;
+    const company = workContainer.querySelector('input[name="company"]').value;
+    const startDate = workContainer.querySelector('input[name="start-date"]').value;
+    const endDate = workContainer.querySelector('input[name="end-date"]').value;
+    const jobDescription = workContainer.querySelector('textarea[name="job-description"]').value;
+
+    // Validate start date is before end date
+    if (new Date(startDate) > new Date(endDate)) {
+      alert('Start date must be before end date.');
+      return false;
+    }
+
+    workExperience.push({ position, company, startDate, endDate, jobDescription });
+  });
+
+  const previousWorkExperience = JSON.parse(localStorage.getItem('workExperience')) || [];
+  const updatedWorkExperience = previousWorkExperience.concat(workExperience);
+  localStorage.setItem('workExperience', JSON.stringify(updatedWorkExperience));
+  window.location.href = 'languages.html';
+};
+
   </script>
   </body>
 </html>

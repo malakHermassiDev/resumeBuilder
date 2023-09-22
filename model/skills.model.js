@@ -3,9 +3,7 @@ const mongoose = require("mongoose");
 const SkillSchema = mongoose.Schema(
   {
     username: {
-      type : mongoose.Schema.Types.ObjectId , 
-      ref : 'Client',
-      require : true
+      type: String,    
     },
     skill: {
       type: String,

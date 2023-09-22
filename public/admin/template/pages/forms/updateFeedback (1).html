@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Feedback</title>
+  </head>
+  <body>
+    <form onsubmit="return false">
+      <div>
+        <label for="username">Username</label>
+        <input id="username" type="text" />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" type="email" />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input id="password" type="password" />
+      </div>
+      <div>
+        <button onclick="update();" type="submit">Add Feedback</button>
+      </div>
+    </form>
+
+    <!--Update Feedback-->
+    <script>
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+      var c = url.searchParams.get("id");
+
+      var url3 = "http://127.0.0.1:3000/feedbacks/" + c;
+      var xhr3 = new XMLHttpRequest();
+      xhr3.open("GET", url3, true);
+
+      xhr3.onload = function () {
+        var feedbacks = JSON.parse(xhr3.responseText);
+        if (xhr3.readyState == 4 && xhr3.status == "200") {
+          document.getElementById("username").value = feedbacks.username;
+          document.getElementById("email").value = feedbacks.email;
+          document.getElementById("password").value = feedbacks.password;
+        } else {
+          console.log("error");
+        }
+      };
+      xhr3.send(null);
+
+      function update() {
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var c = url.searchParams.get("id");
+
+        var url = "http://127.0.0.1:3000/feedbacks/" + c;
+
+        var data = {};
+        data.username = document.getElementById("username").value;
+        data.email = document.getElementById("email").value;
+        data.password = document.getElementById("password").value;
+
+        var json = JSON.stringify(data);
+        var xhr = new XMLHttpRequest();
+        xhr.open("PUT", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+        xhr.onload = function () {
+          var Feedbacks = JSON.parse(xhr.responseText);
+          if (xhr.readyState == 4 && xhr.status == "200") {
+            alert("Feedbacks Updated!");
+            location.replace("listFeedback.html");
+          } else {
+            console.error(feedbacks);
+            location.replace("listFeedback.html");
+          }
+        };
+        xhr.send(json);
+      }
+    </script>
+  </body>
+</html>

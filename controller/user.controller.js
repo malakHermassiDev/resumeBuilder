@@ -36,37 +36,35 @@ exports.create = async (req, res) => {
         });
     }
 };
-
-
-//LEVEL 10 
-// hashing 
-//step 1 : generate 'salt value'
-//password :azerty
-//step 1 : QSDFGHkeghzjklqmz'(§èà123456)4567
 //login
-exports.login = ( req, res)=>{
-    const {email , password} = req.body
-    // findOne
-    Client.findOne({email} , (error , user)=>{
-        if(error){
-            return res.status(500).json({message : 'error in the server side'})
+
+exports.login = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        // Find the user by email
+        const user = await Client.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({ message: 'User is not found' });
         }
-        if(!user){
-            return res.status(404).json({message : 'user is not found'})
+
+        // Compare the provided plaintext password with the stored hashed password
+        const isMatch = await bcrypt.compare(password, user.password);
+// password: azerty123
+// hashed : qsdfghjklm:=dfghjkl:1234567OWXDFGHNJKL
+        if (isMatch) {
+            return res.status(200).json({ message: 'Successfully logged in' });
+        } else {
+            return res.status(401).json({ message: 'Failed to log in' });
         }
-        bcrypt.compare(password , user.password , (error , isMatch)=>{
-            if(error){
-                return res.status(500).json({message : 'error in the server side'})
-            }
-            if(isMatch){
-                return res.status(200).json({message : "successfully logged In"})
-            }
-            else{
-                return res.status(401).json({message : "failed logged In"})
-            }
-        })
-    })      
-}
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error in the server side' });
+    }
+};
+
+
 //logout
 //session
 exports.logout = (req , res) =>{

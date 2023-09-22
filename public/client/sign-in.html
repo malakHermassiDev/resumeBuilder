@@ -44,7 +44,7 @@
                       <input type="text" class="form-control form-control-lg" id="email" placeholder="Email">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-lg" id="password" placeholder="Password">
+                      <input type="password" class="form-control form-control-lg" id="password" placeholder="Password" >
                     </div>
                     <div class="mt-3">
                       <button onclick="login()" type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
@@ -62,19 +62,21 @@
         </div>
         <!-- page-body-wrapper ends -->
       </div>
-      <script>
+      <!-- <script>
         function login(){
         email = document.getElementById('email').value ; 
         password = document.getElementById('password').value ; 
+        console.log(password)
         // Définir une requête de connection standard JS
     var request = new XMLHttpRequest();
     // Choisir la méthode GET comme une méthode d'accès au serveur et récupérer les données .
-    request.open("GET", "https://olfaresumebuilding.onrender.com/users", true);
+    request.open("GET", "http://127.0.0.1:3000/users", true);
+    request.setRequestHeader("Content-type", "application/json; charset=utf-8");
     // Load les données à partir de la serveur -> Début connection
     request.onload = function () {
       // Begin accessing JSON data here
       var data = JSON.parse(this.response);
-      console.log(data);
+      // console.log(data);
       access = false;
       for(i=0 ; i < data.length ; i++){
             if(data[i].email == email && data[i].password == password){
@@ -95,8 +97,38 @@
     };
     // Send request
     request.send();}
-    </script>
-      
+    </script> -->
+      <script>
+        function login() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+   
+    // Create a login data object
+    const loginData = {
+        email: email,
+        password: password
+    };
+
+    // Send a POST request with JSON data
+    var request = new XMLHttpRequest();
+    request.open("POST", "http://127.0.0.1:3000/login", true);
+    request.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    request.onload = function () {
+        var response = JSON.parse(this.responseText);
+        if (response.message === 'Successfully logged in') {
+            sessionStorage.setItem("loggedIn", "true");
+            alert("Welcome user");
+            location.replace('index.html');
+        } else {
+            alert("Invalid Login or password");
+        }
+    };
+
+    request.send(JSON.stringify(loginData));
+}
+
+      </script>
       </body>
       </html>
    

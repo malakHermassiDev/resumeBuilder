@@ -27,7 +27,8 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public/admin/template')));
 app.use(express.static(path.join(__dirname, 'public')));
 //callback function (function as parameter )
-mongoose.connect('mongodb+srv://malekhermassi:s1vbC8wANV8eRH7q@cluster0.lggm9kq.mongodb.net/?retryWrites=true&w=majority', option={
+// gBGbH4dspszcHKDB
+mongoose.connect('mongodb+srv://malakhermassi111:gBGbH4dspszcHKDB@cluster0.potxgqe.mongodb.net/?retryWrites=true&w=majority', option={
         useNewUrlParser : true ,
         useUnifiedTopology: true
     })
