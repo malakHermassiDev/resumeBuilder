@@ -14,7 +14,7 @@
         url_href = window.location.href
         var url = new URL(url_href)
         var ID = url.searchParams.get("id")
-        var newUrl = "http://127.0.0.1:3000/admins/" +ID
+        var newUrl = "https://olfaresumebuilding.onrender.com/admins/" +ID
         request = new XMLHttpRequest()
         request.open("Get" , newUrl , true)
         request.onload = function (){
